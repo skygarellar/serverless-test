@@ -1,17 +1,20 @@
 'use strict';
 
 const {
-  TeamsStaticContentGenerator
-} = require('reactdomserver-test/lib');
+  SkySportStaticContentGenerator
+} = require('sky-sport-static-content-generator/lib');
 
 module.exports.test = async event => {
   let data;
   try {
-    data = await TeamsStaticContentGenerator.get({
+    const ssscg = SkySportStaticContentGenerator();
+    data = await ssscg.get(ssscg.COMPONENTS.TEAMS, {
       competition: 21
     });
+
     console.log(data);
   } catch (error) {
+    console.log('ERROR', error);
     data = error;
   }
 
